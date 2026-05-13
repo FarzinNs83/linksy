@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:front/gen/fonts.gen.dart';
 import '../../constant/app_constants.dart';
 
 class AppTheme {
@@ -210,62 +210,77 @@ class AppTheme {
       displayLarge: TextStyle(
         fontSize: AppConstants.fontSizeDisplayLarge,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       displayMedium: TextStyle(
         fontSize: AppConstants.fontSizeDisplayMedium,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       displaySmall: TextStyle(
         fontSize: AppConstants.fontSizeDisplaySmall,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       headlineLarge: TextStyle(
         fontSize: AppConstants.fontSizeHeadlineLarge,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       headlineMedium: TextStyle(
         fontSize: AppConstants.fontSizeHeadlineMedium,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       headlineSmall: TextStyle(
         fontSize: AppConstants.fontSizeHeadlineSmall,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       titleLarge: TextStyle(
         fontSize: AppConstants.fontSizeTitleLarge,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       titleMedium: TextStyle(
         fontSize: AppConstants.fontSizeTitleMedium,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       titleSmall: TextStyle(
         fontSize: AppConstants.fontSizeTitleSmall,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       bodyLarge: TextStyle(
         fontSize: AppConstants.fontSizeBodyLarge,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       bodyMedium: TextStyle(
         fontSize: AppConstants.fontSizeBodyMedium,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       bodySmall: TextStyle(
         fontSize: AppConstants.fontSizeBodySmall,
         color: colorScheme.onSurfaceVariant,
+        fontFamily: FontFamily.gillSans,
       ),
       labelLarge: TextStyle(
         fontSize: AppConstants.fontSizeLabelLarge,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       labelMedium: TextStyle(
         fontSize: AppConstants.fontSizeLabelMedium,
         color: colorScheme.onSurface,
+        fontFamily: FontFamily.gillSans,
       ),
       labelSmall: TextStyle(
         fontSize: AppConstants.fontSizeLabelSmall,
         color: colorScheme.onSurfaceVariant,
+        fontFamily: FontFamily.gillSans,
       ),
     );
   }

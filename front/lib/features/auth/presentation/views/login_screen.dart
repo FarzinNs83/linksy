@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:front/core/widgets/app_button.dart';
 import 'package:front/features/auth/presentation/views/register_screen.dart';
+import 'package:front/gen/assets.gen.dart';
 
 import '../../../../core/utils/app_ext.dart';
 import '../../../../core/widgets/app_text_field.dart';
@@ -40,7 +41,7 @@ class LoginScreen extends ConsumerWidget {
               height: 400,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/png/background.png'),
+                  image: AssetImage(Assets.png.background.path),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -55,7 +56,7 @@ class LoginScreen extends ConsumerWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/png/light-1.png'),
+                            image: AssetImage(Assets.png.light1.path),
                           ),
                         ),
                       ),
@@ -70,7 +71,7 @@ class LoginScreen extends ConsumerWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/png/light-2.png'),
+                            image: AssetImage(Assets.png.light2.path),
                           ),
                         ),
                       ),
@@ -86,7 +87,7 @@ class LoginScreen extends ConsumerWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/png/clock.png'),
+                            image: AssetImage(Assets.png.clock.path),
                           ),
                         ),
                       ),

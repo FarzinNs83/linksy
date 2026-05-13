@@ -6,8 +6,8 @@ class AuthUseCase {
   final AuthRepo repo;
   AuthUseCase(this.repo);
 
-  Future<void> register({required AuthEntity auth}) async {
-    return repo.register(auth: auth);
+  Future<void> register({required String email, required String pw,required String name}) async {
+    return repo.register(email: email, pw: pw, name: name);
   }
 
   Future<void> login({required String email, required String pw}) async {

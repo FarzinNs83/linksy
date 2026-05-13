@@ -1,6 +1,9 @@
-import '../entities/auth_entity.dart';
 
 abstract class AuthRepo {
-  Future<void> register({required AuthEntity auth});
+  Future<void> register({
+    required String email,
+    required String pw,
+    required String name,
+  });
   Future<void> login({required String email, required String pw});
 }

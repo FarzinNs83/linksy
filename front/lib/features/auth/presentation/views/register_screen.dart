@@ -7,6 +7,7 @@ import 'package:front/features/auth/presentation/views/login_screen.dart';
 import '../../../../core/utils/app_ext.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/show_toast.dart';
+import '../../../../gen/assets.gen.dart';
 import '../providers/auth_providers.dart';
 
 class RegisterScreen extends ConsumerWidget {
@@ -29,7 +30,7 @@ class RegisterScreen extends ConsumerWidget {
     ref.listen(authControllerProvider, (previous, next) {
       next.whenOrNull(
         data: (_) {
-          ShowToast().show("Login successful", context);
+          ShowToast().show("Register successful", context);
         },
         error: (err, stack) {
           ShowToast().show(err.toString(), context);
@@ -44,7 +45,7 @@ class RegisterScreen extends ConsumerWidget {
               height: 400,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/png/background.png'),
+                  image: AssetImage(Assets.png.background.path),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -59,7 +60,7 @@ class RegisterScreen extends ConsumerWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/png/light-1.png'),
+                            image: AssetImage(Assets.png.light1.path),
                           ),
                         ),
                       ),
@@ -74,7 +75,7 @@ class RegisterScreen extends ConsumerWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/png/light-2.png'),
+                            image: AssetImage(Assets.png.light2.path),
                           ),
                         ),
                       ),
@@ -90,7 +91,7 @@ class RegisterScreen extends ConsumerWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/png/clock.png'),
+                            image: AssetImage(Assets.png.clock.path),
                           ),
                         ),
                       ),
@@ -129,7 +130,7 @@ class RegisterScreen extends ConsumerWidget {
                     FadeInUp(
                       duration: Duration(milliseconds: 1800),
                       child: AppTextField(
-                        validator: (p0) =>  p0 == null || p0.length < 3
+                        validator: (p0) => p0 == null || p0.length < 3
                             ? "Name must be at least 3 characters"
                             : null,
                         ctrl: nameCtrl,
@@ -188,7 +189,11 @@ class RegisterScreen extends ConsumerWidget {
                           if (_formKey.currentState!.validate()) {
                             await ref
                                 .read(authControllerProvider.notifier)
-                                .login(emailCtrl.text, pwCtrl.text);
+                                .register(
+                                  emailCtrl.text,
+                                  pwCtrl.text,
+                                  nameCtrl.text,
+                                );
                           }
                         },
                         focusNode: loginNode,
@@ -205,7 +210,7 @@ class RegisterScreen extends ConsumerWidget {
                             children: [
                               Text(
                                 "Already have an account?",
-                                style: context.textTheme.bodyLarge!.copyWith(),
+                                style: context.textTheme.bodyLarge!,
                               ),
                               GestureDetector(
                                 onTap: () {

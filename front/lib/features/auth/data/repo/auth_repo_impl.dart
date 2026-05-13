@@ -1,6 +1,4 @@
-import '../../domain/entities/auth_entity.dart';
 import '../../domain/repo/auth_repo.dart';
-import '../models/auth_model.dart';
 import '../src/auth_remote.dart';
 
 class AuthRepoImpl implements AuthRepo {
@@ -13,7 +11,11 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<void> register({required AuthEntity auth}) async {
-    return await remote.register(auth: auth.toModel());
+  Future<void> register({
+    required String email,
+    required String pw,
+    required String name,
+  }) async {
+    return await remote.register(email: email, pw: pw, name: name);
   }
 }

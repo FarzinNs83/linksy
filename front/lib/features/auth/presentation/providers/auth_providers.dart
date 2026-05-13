@@ -4,8 +4,6 @@ import '../../data/src/auth_remote.dart';
 import '../../data/repo/auth_repo_impl.dart';
 import '../../domain/repo/auth_repo.dart';
 import '../../domain/usecases/auth_usecase.dart';
-import '../../domain/entities/auth_entity.dart';
-
 part 'auth_providers.g.dart';
 
 @riverpod
@@ -28,10 +26,12 @@ class AuthController extends _$AuthController {
   @override
   FutureOr<void> build() {}
 
-  Future<void> register(AuthEntity auth) async {
+  Future<void> register(String email, String pw, String name) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      await ref.read(authUseCaseProvider).register(auth: auth);
+      await ref
+          .read(authUseCaseProvider)
+          .register(email: email, pw: pw, name: name);
     });
   }
 
