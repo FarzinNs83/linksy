@@ -46,11 +46,12 @@ dependencies:
   riverpod: ^3.1.0
   flutter_riverpod: ^3.1.0
   freezed_annotation: ^3.1.0
-  json_annotation: ^4.9.0
+  json_annotation: ^4.11.0
   riverpod_annotation: ^4.0.2
   flutter_styled_toast: ^2.3.0
   shimmer: ^3.0.0
   animated_icon: ^1.0.0
+  animated_text_kit: ^4.3.0
 
 dev_dependencies:
   flutter_test:
@@ -96,12 +97,33 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+fonts:
+  - family: GillSans
+    fonts:
+      - asset: assets/fonts/gs-book.otf
+        weight: 400
+
+      - asset: assets/fonts/gs-bookt.otf
+        weight: 400
+        style: italic
+
+      - asset: assets/fonts/gs-med.otf
+        weight: 500
+
+      - asset: assets/fonts/gs-medt.otf
+        weight: 500
+        style: italic
+
+      - asset: assets/fonts/gs-bold.otf
+        weight: 700
+
+      - asset: assets/fonts/gs-boldt.otf
+        weight: 700
+        style: italic
+
+  - family: Bobbers
+    fonts:
+      - asset: assets/fonts/bobbers.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
