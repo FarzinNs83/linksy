@@ -37,7 +37,7 @@ class AppTheme {
       onError: Color(0xFFFFFFFF),
       errorContainer: Color(0xFFFFDAD6),
       onErrorContainer: Color(0xFF93000A),
-      surface: Color(0xFFE0E0E0),
+      surface: Color(0xFFFFFFFF),
       onSurface: Color(0xFF1C1B1F),
       onSurfaceVariant: Color(0xFF49454F),
       outline: Color(0xFF79747E),
@@ -344,6 +344,7 @@ class AppTheme {
 
   static AppBarTheme appBarTheme(ColorScheme colorScheme) {
     return AppBarTheme(
+      iconTheme: IconThemeData(color: colorScheme.onPrimary,size: 32),
       backgroundColor: colorScheme.primary,
       foregroundColor: colorScheme.onSurface,
       surfaceTintColor: Colors.transparent,

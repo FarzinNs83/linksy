@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:front/features/auth/presentation/views/register_screen.dart';
 import 'package:front/splash_screen.dart';
 import 'core/resources/theme/app_theme.dart';
 
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
+      designSize: Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {

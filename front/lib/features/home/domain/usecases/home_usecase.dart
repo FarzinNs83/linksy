@@ -5,7 +5,15 @@ class HomeUseCase {
   final HomeRepo repo;
   HomeUseCase(this.repo);
 
-  Future<List<HomeEntity>> call() {
-    return repo.getAll();
+  Future<List<HomeEntity>> getPosts() {
+    return repo.getPosts();
+  }
+
+  Future<HomeEntity> publishPost({required String id}) {
+    return repo.publishPost(id: id);
+  }
+
+  Future<HomeEntity> deletePost({required String id}) {
+    return repo.deletePost(id: id);
   }
 }

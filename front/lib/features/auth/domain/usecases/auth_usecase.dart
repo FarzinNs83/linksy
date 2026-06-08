@@ -1,3 +1,5 @@
+import 'package:image_picker/image_picker.dart';
+
 import '../../../../core/error/app_exception.dart';
 import '../repo/auth_repo.dart';
 import '../entities/auth_entity.dart';
@@ -6,8 +8,13 @@ class AuthUseCase {
   final AuthRepo repo;
   AuthUseCase(this.repo);
 
-  Future<void> register({required String email, required String pw,required String name}) async {
-    return repo.register(email: email, pw: pw, name: name);
+  Future<void> register({
+    required String email,
+    required String pw,
+    required String name,
+    required String image,
+  }) async {
+    return repo.register(email: email, pw: pw, name: name, image: image);
   }
 
   Future<void> login({required String email, required String pw}) async {
@@ -15,7 +22,7 @@ class AuthUseCase {
     return repo.login(email: email, pw: pw);
   }
 
-  void _validateLogin(String email , String pw) {
+  void _validateLogin(String email, String pw) {
     final emailRegex = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
     if (email.trim().isEmpty) {
       throw AppException("Email is Required");

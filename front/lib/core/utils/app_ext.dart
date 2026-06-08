@@ -13,7 +13,12 @@ extension ThemeExt on BuildContext {
 extension TextThemeExt on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;
 }
+extension ScreenViewPort on BuildContext {
+  
+    double get screenWidth => MediaQuery.sizeOf(this).width;
 
+  double get screenHeight => MediaQuery.sizeOf(this).height;
+}
 extension Navigate on BuildContext {
   Future<dynamic> navigate(Widget page) {
     return Navigator.push(
@@ -73,6 +78,11 @@ extension Navigate on BuildContext {
       ),
     );
   }
+  
+  void pop() {
+    return Navigator.of(this).pop();
+  }
+  
 }
 
 extension PersianNumbers on String {

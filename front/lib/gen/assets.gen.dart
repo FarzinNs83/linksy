@@ -14,6 +14,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsPngGen {
   const $AssetsPngGen();
 
+  /// File path: assets/png/ananas.jpeg
+  AssetGenImage get ananas => const AssetGenImage('assets/png/ananas.jpeg');
+
   /// File path: assets/png/background.png
   AssetGenImage get background =>
       const AssetGenImage('assets/png/background.png');
@@ -38,12 +41,16 @@ class $AssetsPngGen {
   /// File path: assets/png/main_top.png
   AssetGenImage get mainTop => const AssetGenImage('assets/png/main_top.png');
 
+  /// File path: assets/png/profile.jpg
+  AssetGenImage get profile => const AssetGenImage('assets/png/profile.jpg');
+
   /// File path: assets/png/signup_top.png
   AssetGenImage get signupTop =>
       const AssetGenImage('assets/png/signup_top.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    ananas,
     background,
     clock,
     light1,
@@ -51,6 +58,7 @@ class $AssetsPngGen {
     loginBottom,
     mainBottom,
     mainTop,
+    profile,
     signupTop,
   ];
 }

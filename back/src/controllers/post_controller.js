@@ -4,14 +4,39 @@ import user from "../models/user_model.js";
 async function publishPost(req, res) {
     try {
         const body = req.body;
-        const data = await post.create(body);
-        await user.findByIdAndUpdate(body.user, { $inc: { postCount: 1 } });
+
+        const image = req.file
+            ? req.file.filename
+            : null;
+
+        const data = await post.create({
+            ...body,
+            image,
+        });
+
+        await user.findByIdAndUpdate(
+            body.user,
+            {
+                $inc: { postCount: 1 },
+            }
+        );
+
         const postList = await user.findById(body.user);
+
         postList.posts.push(data._id);
+
         await postList.save();
-        return res.status(201).json({ code: 201, message: "Post Published Successfully", data: data });
+
+        return res.status(201).json({
+            code: 201,
+            message: "Post Published Successfully",
+            data,
+        });
     } catch (error) {
-        res.status(500).json({ code: 500, error: error.message });
+        res.status(500).json({
+            code: 500,
+            error: error.message,
+        });
     }
 }
 
@@ -64,7 +89,7 @@ async function updateLike(req, res) {
     try {
         const id = req.params.id;
         const data = await post.findByIdAndUpdate(id, { $inc: { likes: 1 } });
-        return res.status(201).json({ code: 201, message: "Post Liked Successfully",likeCount : data.likes });
+        return res.status(201).json({ code: 201, message: "Post Liked Successfully", likeCount: data.likes });
     } catch (error) {
         res.status(500).json({ code: 500, error: error.message });
     }

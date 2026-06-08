@@ -13,9 +13,15 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<void> register({
     required String email,
+    required String image,
     required String pw,
     required String name,
   }) async {
-    return await remote.register(email: email, pw: pw, name: name);
+    return await remote.register(
+      email: email,
+      image: image,
+      pw: pw,
+      name: name,
+    );
   }
 }

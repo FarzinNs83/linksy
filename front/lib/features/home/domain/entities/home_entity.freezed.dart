@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeEntity {
 
-@JsonKey(name: "_id") String get id;
+@JsonKey(name: "_id") String get id; String get title; String get image; int get likes; int get commentCount; UserDetailEntity get user; List<CommentEntity> get comments;
 /// Create a copy of HomeEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $HomeEntityCopyWith<HomeEntity> get copyWith => _$HomeEntityCopyWithImpl<HomeEnt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeEntity&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.image, image) || other.image == image)&&(identical(other.likes, likes) || other.likes == likes)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount)&&(identical(other.user, user) || other.user == user)&&const DeepCollectionEquality().equals(other.comments, comments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id);
+int get hashCode => Object.hash(runtimeType,id,title,image,likes,commentCount,user,const DeepCollectionEquality().hash(comments));
 
 @override
 String toString() {
-  return 'HomeEntity(id: $id)';
+  return 'HomeEntity(id: $id, title: $title, image: $image, likes: $likes, commentCount: $commentCount, user: $user, comments: $comments)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $HomeEntityCopyWith<$Res>  {
   factory $HomeEntityCopyWith(HomeEntity value, $Res Function(HomeEntity) _then) = _$HomeEntityCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "_id") String id
+@JsonKey(name: "_id") String id, String title, String image, int likes, int commentCount, UserDetailEntity user, List<CommentEntity> comments
 });
 
 
@@ -65,10 +65,16 @@ class _$HomeEntityCopyWithImpl<$Res>
 
 /// Create a copy of HomeEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? image = null,Object? likes = null,Object? commentCount = null,Object? user = null,Object? comments = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String,likes: null == likes ? _self.likes : likes // ignore: cast_nullable_to_non_nullable
+as int,commentCount: null == commentCount ? _self.commentCount : commentCount // ignore: cast_nullable_to_non_nullable
+as int,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserDetailEntity,comments: null == comments ? _self.comments : comments // ignore: cast_nullable_to_non_nullable
+as List<CommentEntity>,
   ));
 }
 
@@ -153,10 +159,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id,  String title,  String image,  int likes,  int commentCount,  UserDetailEntity user,  List<CommentEntity> comments)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeEntity() when $default != null:
-return $default(_that.id);case _:
+return $default(_that.id,_that.title,_that.image,_that.likes,_that.commentCount,_that.user,_that.comments);case _:
   return orElse();
 
 }
@@ -174,10 +180,10 @@ return $default(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id,  String title,  String image,  int likes,  int commentCount,  UserDetailEntity user,  List<CommentEntity> comments)  $default,) {final _that = this;
 switch (_that) {
 case _HomeEntity():
-return $default(_that.id);case _:
+return $default(_that.id,_that.title,_that.image,_that.likes,_that.commentCount,_that.user,_that.comments);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +200,10 @@ return $default(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "_id")  String id)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "_id")  String id,  String title,  String image,  int likes,  int commentCount,  UserDetailEntity user,  List<CommentEntity> comments)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeEntity() when $default != null:
-return $default(_that.id);case _:
+return $default(_that.id,_that.title,_that.image,_that.likes,_that.commentCount,_that.user,_that.comments);case _:
   return null;
 
 }
@@ -209,10 +215,22 @@ return $default(_that.id);case _:
 @JsonSerializable()
 
 class _HomeEntity implements HomeEntity {
-  const _HomeEntity({@JsonKey(name: "_id") required this.id});
+  const _HomeEntity({@JsonKey(name: "_id") required this.id, required this.title, required this.image, required this.likes, required this.commentCount, required this.user, required final  List<CommentEntity> comments}): _comments = comments;
   factory _HomeEntity.fromJson(Map<String, dynamic> json) => _$HomeEntityFromJson(json);
 
 @override@JsonKey(name: "_id") final  String id;
+@override final  String title;
+@override final  String image;
+@override final  int likes;
+@override final  int commentCount;
+@override final  UserDetailEntity user;
+ final  List<CommentEntity> _comments;
+@override List<CommentEntity> get comments {
+  if (_comments is EqualUnmodifiableListView) return _comments;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_comments);
+}
+
 
 /// Create a copy of HomeEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -227,16 +245,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeEntity&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.image, image) || other.image == image)&&(identical(other.likes, likes) || other.likes == likes)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount)&&(identical(other.user, user) || other.user == user)&&const DeepCollectionEquality().equals(other._comments, _comments));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id);
+int get hashCode => Object.hash(runtimeType,id,title,image,likes,commentCount,user,const DeepCollectionEquality().hash(_comments));
 
 @override
 String toString() {
-  return 'HomeEntity(id: $id)';
+  return 'HomeEntity(id: $id, title: $title, image: $image, likes: $likes, commentCount: $commentCount, user: $user, comments: $comments)';
 }
 
 
@@ -247,7 +265,7 @@ abstract mixin class _$HomeEntityCopyWith<$Res> implements $HomeEntityCopyWith<$
   factory _$HomeEntityCopyWith(_HomeEntity value, $Res Function(_HomeEntity) _then) = __$HomeEntityCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "_id") String id
+@JsonKey(name: "_id") String id, String title, String image, int likes, int commentCount, UserDetailEntity user, List<CommentEntity> comments
 });
 
 
@@ -264,10 +282,16 @@ class __$HomeEntityCopyWithImpl<$Res>
 
 /// Create a copy of HomeEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? image = null,Object? likes = null,Object? commentCount = null,Object? user = null,Object? comments = null,}) {
   return _then(_HomeEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String,likes: null == likes ? _self.likes : likes // ignore: cast_nullable_to_non_nullable
+as int,commentCount: null == commentCount ? _self.commentCount : commentCount // ignore: cast_nullable_to_non_nullable
+as int,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserDetailEntity,comments: null == comments ? _self._comments : comments // ignore: cast_nullable_to_non_nullable
+as List<CommentEntity>,
   ));
 }
 

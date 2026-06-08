@@ -132,10 +132,10 @@ final class HomeUseCaseProvider
 
 String _$homeUseCaseHash() => r'a367576a78868dbeca9251c214f717f0297fe999';
 
-@ProviderFor(home)
-final homeProvider = HomeProvider._();
+@ProviderFor(getPosts)
+final getPostsProvider = GetPostsProvider._();
 
-final class HomeProvider
+final class GetPostsProvider
     extends
         $FunctionalProvider<
           AsyncValue<List<HomeEntity>>,
@@ -143,19 +143,19 @@ final class HomeProvider
           FutureOr<List<HomeEntity>>
         >
     with $FutureModifier<List<HomeEntity>>, $FutureProvider<List<HomeEntity>> {
-  HomeProvider._()
+  GetPostsProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'homeProvider',
+        name: r'getPostsProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$homeHash();
+  String debugGetCreateSourceHash() => _$getPostsHash();
 
   @$internal
   @override
@@ -165,8 +165,156 @@ final class HomeProvider
 
   @override
   FutureOr<List<HomeEntity>> create(Ref ref) {
-    return home(ref);
+    return getPosts(ref);
   }
 }
 
-String _$homeHash() => r'0febda695e111d61171ef6ef484bba019d53e00a';
+String _$getPostsHash() => r'6d7f5ecc5efab58f978e9e7289072426439e18ec';
+
+@ProviderFor(publishPost)
+final publishPostProvider = PublishPostFamily._();
+
+final class PublishPostProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<HomeEntity>,
+          HomeEntity,
+          FutureOr<HomeEntity>
+        >
+    with $FutureModifier<HomeEntity>, $FutureProvider<HomeEntity> {
+  PublishPostProvider._({
+    required PublishPostFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'publishPostProvider',
+         isAutoDispose: false,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$publishPostHash();
+
+  @override
+  String toString() {
+    return r'publishPostProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<HomeEntity> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<HomeEntity> create(Ref ref) {
+    final argument = this.argument as String;
+    return publishPost(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is PublishPostProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$publishPostHash() => r'721df60faa7b9dc11172b53ff43bf86d75324dfc';
+
+final class PublishPostFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<HomeEntity>, String> {
+  PublishPostFamily._()
+    : super(
+        retry: null,
+        name: r'publishPostProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: false,
+      );
+
+  PublishPostProvider call(String id) =>
+      PublishPostProvider._(argument: id, from: this);
+
+  @override
+  String toString() => r'publishPostProvider';
+}
+
+@ProviderFor(deletePost)
+final deletePostProvider = DeletePostFamily._();
+
+final class DeletePostProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<HomeEntity>,
+          HomeEntity,
+          FutureOr<HomeEntity>
+        >
+    with $FutureModifier<HomeEntity>, $FutureProvider<HomeEntity> {
+  DeletePostProvider._({
+    required DeletePostFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'deletePostProvider',
+         isAutoDispose: false,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$deletePostHash();
+
+  @override
+  String toString() {
+    return r'deletePostProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<HomeEntity> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<HomeEntity> create(Ref ref) {
+    final argument = this.argument as String;
+    return deletePost(ref, argument);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is DeletePostProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$deletePostHash() => r'fb257a0b6e91ddff0eebd776c1e82b6251a4cb9f';
+
+final class DeletePostFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<HomeEntity>, String> {
+  DeletePostFamily._()
+    : super(
+        retry: null,
+        name: r'deletePostProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: false,
+      );
+
+  DeletePostProvider call(String id) =>
+      DeletePostProvider._(argument: id, from: this);
+
+  @override
+  String toString() => r'deletePostProvider';
+}

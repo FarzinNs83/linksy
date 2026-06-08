@@ -9,7 +9,12 @@ const user = new mongoose.Schema({
     followers: { type: Number, default: 0 },
     followings: { type: Number, default: 0 },
     postCount: { type: Number, default: 0 },
-    posts: [{ type: Schema.Types.ObjectId, required: true, ref: "Post" }]
-}, { timestamps: true });
+    posts: [{ type: Schema.Types.ObjectId, required: true, ref: "Post" }],
+    socials: [{ type: String, default: [] }],
+    cats: [{ type: String, default: [] }],
+    bookmark: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+}, {
+    timestamps: true,    
+});
 
 export default model("User", user);

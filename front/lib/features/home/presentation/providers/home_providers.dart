@@ -25,6 +25,15 @@ HomeUseCase homeUseCase(Ref ref) {
 }
 
 @Riverpod(keepAlive: true)
-Future<List<HomeEntity>> home(Ref ref) {
-  return ref.watch(homeUseCaseProvider).call();
+Future<List<HomeEntity>> getPosts(Ref ref) {
+  return ref.watch(homeUseCaseProvider).getPosts();
 }
+@Riverpod(keepAlive: true)
+Future<HomeEntity> publishPost(Ref ref,String id) {
+  return ref.watch(homeUseCaseProvider).publishPost(id: id);
+}
+@Riverpod(keepAlive: true)
+Future<HomeEntity> deletePost(Ref ref,String id) {
+  return ref.watch(homeUseCaseProvider).deletePost(id: id);
+}
+

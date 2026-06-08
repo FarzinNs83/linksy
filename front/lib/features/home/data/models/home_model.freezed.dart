@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeModel {
 
-@JsonKey(name: "_id") String get id;
+@JsonKey(name: "_id") String get id; String get title; String get image; int get likes; int get commentCount; List<CommentModel> get comments; UserDetailModel get user;
 /// Create a copy of HomeModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $HomeModelCopyWith<HomeModel> get copyWith => _$HomeModelCopyWithImpl<HomeModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeModel&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.image, image) || other.image == image)&&(identical(other.likes, likes) || other.likes == likes)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount)&&const DeepCollectionEquality().equals(other.comments, comments)&&(identical(other.user, user) || other.user == user));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id);
+int get hashCode => Object.hash(runtimeType,id,title,image,likes,commentCount,const DeepCollectionEquality().hash(comments),user);
 
 @override
 String toString() {
-  return 'HomeModel(id: $id)';
+  return 'HomeModel(id: $id, title: $title, image: $image, likes: $likes, commentCount: $commentCount, comments: $comments, user: $user)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $HomeModelCopyWith<$Res>  {
   factory $HomeModelCopyWith(HomeModel value, $Res Function(HomeModel) _then) = _$HomeModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "_id") String id
+@JsonKey(name: "_id") String id, String title, String image, int likes, int commentCount, List<CommentModel> comments, UserDetailModel user
 });
 
 
@@ -65,10 +65,16 @@ class _$HomeModelCopyWithImpl<$Res>
 
 /// Create a copy of HomeModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? image = null,Object? likes = null,Object? commentCount = null,Object? comments = null,Object? user = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String,likes: null == likes ? _self.likes : likes // ignore: cast_nullable_to_non_nullable
+as int,commentCount: null == commentCount ? _self.commentCount : commentCount // ignore: cast_nullable_to_non_nullable
+as int,comments: null == comments ? _self.comments : comments // ignore: cast_nullable_to_non_nullable
+as List<CommentModel>,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserDetailModel,
   ));
 }
 
@@ -153,10 +159,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id,  String title,  String image,  int likes,  int commentCount,  List<CommentModel> comments,  UserDetailModel user)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeModel() when $default != null:
-return $default(_that.id);case _:
+return $default(_that.id,_that.title,_that.image,_that.likes,_that.commentCount,_that.comments,_that.user);case _:
   return orElse();
 
 }
@@ -174,10 +180,10 @@ return $default(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id,  String title,  String image,  int likes,  int commentCount,  List<CommentModel> comments,  UserDetailModel user)  $default,) {final _that = this;
 switch (_that) {
 case _HomeModel():
-return $default(_that.id);case _:
+return $default(_that.id,_that.title,_that.image,_that.likes,_that.commentCount,_that.comments,_that.user);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +200,10 @@ return $default(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "_id")  String id)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "_id")  String id,  String title,  String image,  int likes,  int commentCount,  List<CommentModel> comments,  UserDetailModel user)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeModel() when $default != null:
-return $default(_that.id);case _:
+return $default(_that.id,_that.title,_that.image,_that.likes,_that.commentCount,_that.comments,_that.user);case _:
   return null;
 
 }
@@ -209,10 +215,22 @@ return $default(_that.id);case _:
 @JsonSerializable()
 
 class _HomeModel implements HomeModel {
-  const _HomeModel({@JsonKey(name: "_id") required this.id});
+  const _HomeModel({@JsonKey(name: "_id") required this.id, required this.title, required this.image, required this.likes, required this.commentCount, required final  List<CommentModel> comments, required this.user}): _comments = comments;
   factory _HomeModel.fromJson(Map<String, dynamic> json) => _$HomeModelFromJson(json);
 
 @override@JsonKey(name: "_id") final  String id;
+@override final  String title;
+@override final  String image;
+@override final  int likes;
+@override final  int commentCount;
+ final  List<CommentModel> _comments;
+@override List<CommentModel> get comments {
+  if (_comments is EqualUnmodifiableListView) return _comments;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_comments);
+}
+
+@override final  UserDetailModel user;
 
 /// Create a copy of HomeModel
 /// with the given fields replaced by the non-null parameter values.
@@ -227,16 +245,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeModel&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.image, image) || other.image == image)&&(identical(other.likes, likes) || other.likes == likes)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount)&&const DeepCollectionEquality().equals(other._comments, _comments)&&(identical(other.user, user) || other.user == user));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id);
+int get hashCode => Object.hash(runtimeType,id,title,image,likes,commentCount,const DeepCollectionEquality().hash(_comments),user);
 
 @override
 String toString() {
-  return 'HomeModel(id: $id)';
+  return 'HomeModel(id: $id, title: $title, image: $image, likes: $likes, commentCount: $commentCount, comments: $comments, user: $user)';
 }
 
 
@@ -247,7 +265,7 @@ abstract mixin class _$HomeModelCopyWith<$Res> implements $HomeModelCopyWith<$Re
   factory _$HomeModelCopyWith(_HomeModel value, $Res Function(_HomeModel) _then) = __$HomeModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "_id") String id
+@JsonKey(name: "_id") String id, String title, String image, int likes, int commentCount, List<CommentModel> comments, UserDetailModel user
 });
 
 
@@ -264,10 +282,16 @@ class __$HomeModelCopyWithImpl<$Res>
 
 /// Create a copy of HomeModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? image = null,Object? likes = null,Object? commentCount = null,Object? comments = null,Object? user = null,}) {
   return _then(_HomeModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String,likes: null == likes ? _self.likes : likes // ignore: cast_nullable_to_non_nullable
+as int,commentCount: null == commentCount ? _self.commentCount : commentCount // ignore: cast_nullable_to_non_nullable
+as int,comments: null == comments ? _self._comments : comments // ignore: cast_nullable_to_non_nullable
+as List<CommentModel>,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserDetailModel,
   ));
 }
 

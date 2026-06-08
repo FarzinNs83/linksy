@@ -8,6 +8,7 @@ import 'package:front/gen/assets.gen.dart';
 import '../../../../core/utils/app_ext.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/show_toast.dart';
+import '../../../home/presentation/views/home_screen.dart';
 import '../providers/auth_providers.dart';
 
 class LoginScreen extends ConsumerWidget {
@@ -27,6 +28,7 @@ class LoginScreen extends ConsumerWidget {
       next.whenOrNull(
         data: (_) {
           ShowToast().show("Login successful", context);
+          context.navigateR(const HomeScreen());
         },
         error: (err, stack) {
           ShowToast().show(err.toString(), context);
@@ -102,7 +104,7 @@ class LoginScreen extends ConsumerWidget {
                           child: FadeInDown(
                             duration: Duration(seconds: 1),
                             child: Text(
-                              "Welcome Back To Linksy!",
+                              "Welcome To Linksy!",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 40,
@@ -132,7 +134,7 @@ class LoginScreen extends ConsumerWidget {
                         ctrl: emailCtrl,
                         focusNode: emailNode,
                         hintText: 'Please Enter Email',
-                        prefixIcon: Icon(Icons.email_outlined),
+                        prefixIcon: Icon(Icons.email_outlined), label: 'Email',
                       ),
                     ),
                     16.height,
@@ -146,7 +148,7 @@ class LoginScreen extends ConsumerWidget {
                         ctrl: pwCtrl,
                         focusNode: pwNode,
                         hintText: "Please Enter PW",
-                        prefixIcon: Icon(Icons.password_rounded),
+                        prefixIcon: Icon(Icons.password_rounded), label: 'Password',
                       ),
                     ),
                     30.height,

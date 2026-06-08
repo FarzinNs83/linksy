@@ -14,7 +14,6 @@ extension ThemeExtensions on BuildContext {
   ThemeData get theme => Theme.of(this);
 
   /// Get the current color scheme (primary, secondary, surface, etc.)
-  ColorScheme get colorScheme => theme.colorScheme;
 
   /// Get the current text theme (headlineLarge, bodyMedium, etc.)
   TextTheme get textTheme => theme.textTheme;
@@ -142,11 +141,6 @@ extension ResponsiveExtensions on BuildContext {
   /// Get responsive text size multiplier
   double get textSizeMultiplier => AppConstants.getTextSizeMultiplier(mediaQuery.size.width);
 
-  /// Get screen width
-  double get screenWidth => mediaQuery.size.width;
-
-  /// Get screen height
-  double get screenHeight => mediaQuery.size.height;
 }
 
 /// Widget extensions - Convenience methods

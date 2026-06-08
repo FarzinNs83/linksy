@@ -9,6 +9,7 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final Widget prefixIcon;
   final bool obsecure;
+  final String label;
   const AppTextField({
     super.key,
     this.validator,
@@ -17,7 +18,8 @@ class AppTextField extends StatelessWidget {
     required this.focusNode,
     this.nextFocus,
     required this.hintText,
-    required this.prefixIcon, this.obsecure = false,
+    required this.prefixIcon,
+    this.obsecure = false, required this.label,
   });
 
   @override
@@ -28,6 +30,7 @@ class AppTextField extends StatelessWidget {
       controller: ctrl,
       keyboardType: keyboardType,
       focusNode: focusNode,
+      
       onFieldSubmitted: (_) {
         if (nextFocus != null) {
           FocusScope.of(context).requestFocus(nextFocus);
@@ -35,7 +38,7 @@ class AppTextField extends StatelessWidget {
           FocusManager.instance.primaryFocus!.unfocus();
         }
       },
-      decoration: InputDecoration(hintText: hintText, prefixIcon: prefixIcon),
+      decoration: InputDecoration(hintText: hintText, prefixIcon: prefixIcon,labelText: label),
     );
   }
 }

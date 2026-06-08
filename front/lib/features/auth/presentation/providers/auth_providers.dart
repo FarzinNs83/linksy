@@ -1,3 +1,4 @@
+import 'package:image_picker/image_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/network/dio_service.dart';
 import '../../data/src/auth_remote.dart';
@@ -26,12 +27,12 @@ class AuthController extends _$AuthController {
   @override
   FutureOr<void> build() {}
 
-  Future<void> register(String email, String pw, String name) async {
+  Future<void> register(String email, String pw, String name, String image) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       await ref
           .read(authUseCaseProvider)
-          .register(email: email, pw: pw, name: name);
+          .register(email: email, pw: pw, name: name, image: image);
     });
   }
 

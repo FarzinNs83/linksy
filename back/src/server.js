@@ -7,8 +7,8 @@ import router from "./routes/index.js";
 import upload from "./utils/upload.js";
 app.use(cors());
 app.use(express.json());
+app.use("/images", express.static("images"));
 app.use(express.urlencoded({ extended: true }));
-app.use(upload.single('image'));
 app.use(router);
 db.connectDb();
 app.listen(process.env.PORT, () => {

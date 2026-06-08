@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AuthEntity {
 
-@JsonKey(name: "_id") String get id; String get name; String get email; String get pw;
+@JsonKey(name: "_id") String get id; String get name; String get email; String get pw; String get image;
 /// Create a copy of AuthEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $AuthEntityCopyWith<AuthEntity> get copyWith => _$AuthEntityCopyWithImpl<AuthEnt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.pw, pw) || other.pw == pw));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.pw, pw) || other.pw == pw)&&(identical(other.image, image) || other.image == image));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,email,pw);
+int get hashCode => Object.hash(runtimeType,id,name,email,pw,image);
 
 @override
 String toString() {
-  return 'AuthEntity(id: $id, name: $name, email: $email, pw: $pw)';
+  return 'AuthEntity(id: $id, name: $name, email: $email, pw: $pw, image: $image)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $AuthEntityCopyWith<$Res>  {
   factory $AuthEntityCopyWith(AuthEntity value, $Res Function(AuthEntity) _then) = _$AuthEntityCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "_id") String id, String name, String email, String pw
+@JsonKey(name: "_id") String id, String name, String email, String pw, String image
 });
 
 
@@ -65,12 +65,13 @@ class _$AuthEntityCopyWithImpl<$Res>
 
 /// Create a copy of AuthEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? email = null,Object? pw = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? email = null,Object? pw = null,Object? image = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,pw: null == pw ? _self.pw : pw // ignore: cast_nullable_to_non_nullable
+as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -156,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id,  String name,  String email,  String pw)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id,  String name,  String email,  String pw,  String image)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AuthEntity() when $default != null:
-return $default(_that.id,_that.name,_that.email,_that.pw);case _:
+return $default(_that.id,_that.name,_that.email,_that.pw,_that.image);case _:
   return orElse();
 
 }
@@ -177,10 +178,10 @@ return $default(_that.id,_that.name,_that.email,_that.pw);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id,  String name,  String email,  String pw)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id,  String name,  String email,  String pw,  String image)  $default,) {final _that = this;
 switch (_that) {
 case _AuthEntity():
-return $default(_that.id,_that.name,_that.email,_that.pw);case _:
+return $default(_that.id,_that.name,_that.email,_that.pw,_that.image);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +198,10 @@ return $default(_that.id,_that.name,_that.email,_that.pw);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "_id")  String id,  String name,  String email,  String pw)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "_id")  String id,  String name,  String email,  String pw,  String image)?  $default,) {final _that = this;
 switch (_that) {
 case _AuthEntity() when $default != null:
-return $default(_that.id,_that.name,_that.email,_that.pw);case _:
+return $default(_that.id,_that.name,_that.email,_that.pw,_that.image);case _:
   return null;
 
 }
@@ -212,13 +213,14 @@ return $default(_that.id,_that.name,_that.email,_that.pw);case _:
 @JsonSerializable()
 
 class _AuthEntity implements AuthEntity {
-  const _AuthEntity({@JsonKey(name: "_id") required this.id, required this.name, required this.email, required this.pw});
+  const _AuthEntity({@JsonKey(name: "_id") required this.id, required this.name, required this.email, required this.pw, required this.image});
   factory _AuthEntity.fromJson(Map<String, dynamic> json) => _$AuthEntityFromJson(json);
 
 @override@JsonKey(name: "_id") final  String id;
 @override final  String name;
 @override final  String email;
 @override final  String pw;
+@override final  String image;
 
 /// Create a copy of AuthEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +235,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.pw, pw) || other.pw == pw));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.pw, pw) || other.pw == pw)&&(identical(other.image, image) || other.image == image));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,email,pw);
+int get hashCode => Object.hash(runtimeType,id,name,email,pw,image);
 
 @override
 String toString() {
-  return 'AuthEntity(id: $id, name: $name, email: $email, pw: $pw)';
+  return 'AuthEntity(id: $id, name: $name, email: $email, pw: $pw, image: $image)';
 }
 
 
@@ -253,7 +255,7 @@ abstract mixin class _$AuthEntityCopyWith<$Res> implements $AuthEntityCopyWith<$
   factory _$AuthEntityCopyWith(_AuthEntity value, $Res Function(_AuthEntity) _then) = __$AuthEntityCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "_id") String id, String name, String email, String pw
+@JsonKey(name: "_id") String id, String name, String email, String pw, String image
 });
 
 
@@ -270,12 +272,13 @@ class __$AuthEntityCopyWithImpl<$Res>
 
 /// Create a copy of AuthEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? email = null,Object? pw = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? email = null,Object? pw = null,Object? image = null,}) {
   return _then(_AuthEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,pw: null == pw ? _self.pw : pw // ignore: cast_nullable_to_non_nullable
+as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
