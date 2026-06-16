@@ -46,7 +46,7 @@ async function getPosts(req, res) {
     try {
         const total = await post.countDocuments();
         const totalPage = Math.ceil(total / 4);
-        const data = await post.find().populate("user", "name image").skip((page - 1) * 4).limit(4);
+        const data = await post.find().populate("user", "name image username email").skip((page - 1) * 4).limit(4);
         if (!data) return res.status(404).json({ code: 404, error: "No Posts Found!" });
         if (page > totalPage) {
             return res.status(404).json({ code: 404, message: "No more post available", total: total, page: page, totalPage: totalPage });

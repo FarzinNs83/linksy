@@ -4,17 +4,23 @@ class UserDetailModel {
   final String id;
   final String name;
   final String image;
+  final String username;
+  final String email;
 
   UserDetailModel({
     required this.id,
     required this.name,
     required this.image,
+    required this.username,
+    required this.email,
   });
 
   factory UserDetailModel.fromJson(Map<String, dynamic> json) {
     return UserDetailModel(
       id: json['_id'],
       name: json['name'],
+      username: json['username'],
+      email: json['email'],
       image: "${UrlConst.images}${json['image']}",
     );
   }
@@ -24,6 +30,8 @@ class UserDetailModel {
       '_id': id,
       'name': name,
       'image': image,
+      'username': username,
+      'email': email,
     };
   }
 }
@@ -33,6 +41,8 @@ extension UserDetailMapper on UserDetailModel {
       id: id,
       name: name,
       image: image,
+      username: username,
+      email: email,
     );
   }
 }

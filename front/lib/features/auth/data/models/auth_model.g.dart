@@ -12,6 +12,7 @@ _AuthModel _$AuthModelFromJson(Map<String, dynamic> json) => _AuthModel(
   email: json['email'] as String,
   pw: json['pw'] as String,
   image: json['image'] as String,
+  username: json['username'] as String,
 );
 
 Map<String, dynamic> _$AuthModelToJson(_AuthModel instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$AuthModelToJson(_AuthModel instance) =>
       'email': instance.email,
       'pw': instance.pw,
       'image': instance.image,
+      'username': instance.username,
     };

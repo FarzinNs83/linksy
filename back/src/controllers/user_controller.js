@@ -6,7 +6,7 @@ import path from "path";
 
 async function register(req, res) {
     try {
-        const { name, email, pw } = req.body;
+        const { name, email, pw, username } = req.body;
 
         const image = req.file
             ? req.file.filename
@@ -18,7 +18,8 @@ async function register(req, res) {
             name: name,
             email: email,
             pw: hashbrown,
-            image: image
+            image: image,
+            username: username
         });
 
         const jwt = await token(newUser._id);
@@ -56,7 +57,7 @@ async function login(req, res) {
         const findUser = await User.findOne({ email: email });
         if (findUser && await bcrypty.compare(pw, findUser.pw)) {
             const jwt = await token(findUser._id);
-            res.status(201).json({ code: 201, message: "Login successfull", token: jwt });
+            res.status(201).json({ code: 201, message: "Login successfull", token: jwt, _id: findUser._id });
         } else {
             res.status(401).json({ code: 401, error: "Invalid email or password" });
         }

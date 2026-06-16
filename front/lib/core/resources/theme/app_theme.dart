@@ -72,52 +72,52 @@ class AppTheme {
   static ColorScheme darkScheme() {
     return const ColorScheme(
       brightness: Brightness.dark,
-      primary: Color(0xFF4f52dd),
-      surfaceTint: Color(0xFF4f52dd),
+      primary: Color(0xFF8185F1),
+      surfaceTint: Color(0xFF8185F1),
       onPrimary: Color(0xFFFFFFFF),
-      primaryContainer: Color(0xFF272ab5),
-      onPrimaryContainer: Color(0xFFFFFFFF),
-      secondary: Color(0xFF7432d8),
+      primaryContainer: Color(0xFF3739A6),
+      onPrimaryContainer: Color(0xFFE0E0FF),
+      secondary: Color(0xFF9E6AE0),
       onSecondary: Color(0xFFFFFFFF),
-      secondaryContainer: Color(0xFF4c0ab0),
-      onSecondaryContainer: Color(0xFFFFFFFF),
-      tertiary: Color(0xFF00a56d),
+      secondaryContainer: Color(0xFF5A1DC0),
+      onSecondaryContainer: Color(0xFFF0DAFF),
+      tertiary: Color(0xFF4CD9A4),
       onTertiary: Color(0xFF000000),
-      tertiaryContainer: Color(0xFF007d45),
-      onTertiaryContainer: Color(0xFFFFFFFF),
+      tertiaryContainer: Color(0xFF005235),
+      onTertiaryContainer: Color(0xFF80FFD8),
       error: Color(0xFFFFB4AB),
       onError: Color(0xFF000000),
       errorContainer: Color(0xFF93000A),
       onErrorContainer: Color(0xFFFFFFFF),
-      surface: Color(0xFF282C34),
-      onSurface: Color(0xFFE6E0E9),
-      onSurfaceVariant: Color(0xFFCAC4D0),
-      outline: Color(0xFF938F99),
+      surface: Color(0xFF1C1E25),
+      onSurface: Color(0xFFE4E1E9),
+      onSurfaceVariant: Color(0xFFC8C5D0),
+      outline: Color(0xFF928F9A),
       outlineVariant: Color(0xFF49454F),
       shadow: Color(0xFF000000),
       scrim: Color(0xFF000000),
-      inverseSurface: Color(0xFFE6E0E9),
+      inverseSurface: Color(0xFFE4E1E9),
       onInverseSurface: Color(0xFF313033),
       inversePrimary: Color(0xFF6366F1),
-      primaryFixed: Color(0xFFb3b6ff),
-      onPrimaryFixed: Color(0xFF272ab5),
-      primaryFixedDim: Color(0xFF9fa2ff),
-      onPrimaryFixedVariant: Color(0xFF4f52dd),
-      secondaryFixed: Color(0xFFd896ff),
-      onSecondaryFixed: Color(0xFF4c0ab0),
-      secondaryFixedDim: Color(0xFFc482ff),
-      onSecondaryFixedVariant: Color(0xFF7432d8),
-      tertiaryFixed: Color(0xFF60ffd1),
-      onTertiaryFixed: Color(0xFF007d45),
-      tertiaryFixedDim: Color(0xFF4cf5bd),
-      onTertiaryFixedVariant: Color(0xFF00a56d),
-      surfaceDim: Color(0xFF10090D),
-      surfaceBright: Color(0xFF362F33),
-      surfaceContainerLowest: Color(0xFF0B0509),
-      surfaceContainerLow: Color(0xFF1D1418),
-      surfaceContainer: Color(0xFF211A1E),
-      surfaceContainerHigh: Color(0xFF2B2329),
-      surfaceContainerHighest: Color(0xFF362F33),
+      primaryFixed: Color(0xFFE0E0FF),
+      onPrimaryFixed: Color(0xFF0809A3),
+      primaryFixedDim: Color(0xFFBFC2FF),
+      onPrimaryFixedVariant: Color(0xFF2B2DA0),
+      secondaryFixed: Color(0xFFF0DAFF),
+      onSecondaryFixed: Color(0xFF34007A),
+      secondaryFixedDim: Color(0xFFD9B8FF),
+      onSecondaryFixedVariant: Color(0xFF6B2DC8),
+      tertiaryFixed: Color(0xFF80FFD8),
+      onTertiaryFixed: Color(0xFF002114),
+      tertiaryFixedDim: Color(0xFF63E0B6),
+      onTertiaryFixedVariant: Color(0xFF003A24),
+      surfaceDim: Color(0xFF131419),
+      surfaceBright: Color(0xFF3A3A42),
+      surfaceContainerLowest: Color(0xFF0E0F14),
+      surfaceContainerLow: Color(0xFF1C1E25),
+      surfaceContainer: Color(0xFF202229),
+      surfaceContainerHigh: Color(0xFF2B2C34),
+      surfaceContainerHighest: Color(0xFF36373F),
     );
   }
   // ============================================================================
@@ -292,7 +292,9 @@ class AppTheme {
   static InputDecorationTheme inputDecorationTheme(ColorScheme colorScheme) {
     return InputDecorationTheme(
       filled: true,
-      fillColor: colorScheme.onPrimary,
+      fillColor: colorScheme.brightness == Brightness.dark
+          ? colorScheme.surfaceContainerHigh
+          : colorScheme.onPrimary,
       
       contentPadding: EdgeInsets.symmetric(
         horizontal: AppConstants.spacingMD,
@@ -318,12 +320,12 @@ class AppTheme {
 
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppConstants.radiusMD),
-        borderSide: BorderSide(color: colorScheme.onSecondary,width: 1.3),
+        borderSide: BorderSide(color: colorScheme.outlineVariant, width: 1.3),
       ),
 
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppConstants.radiusMD),
-        borderSide: BorderSide(color: colorScheme.onPrimaryContainer, width: 2),
+        borderSide: BorderSide(color: colorScheme.primary, width: 2),
       ),
 
       errorBorder: OutlineInputBorder(
@@ -343,13 +345,17 @@ class AppTheme {
   // ============================================================================
 
   static AppBarTheme appBarTheme(ColorScheme colorScheme) {
+    final isDark = colorScheme.brightness == Brightness.dark;
     return AppBarTheme(
-      iconTheme: IconThemeData(color: colorScheme.onPrimary,size: 32),
-      backgroundColor: colorScheme.primary,
-      foregroundColor: colorScheme.onSurface,
+      iconTheme: IconThemeData(
+        color: isDark ? colorScheme.onSurface : colorScheme.onPrimary,
+        size: 32,
+      ),
+      backgroundColor: isDark ? colorScheme.surface : colorScheme.primary,
+      foregroundColor: isDark ? colorScheme.onSurface : colorScheme.onPrimary,
       surfaceTintColor: Colors.transparent,
       titleTextStyle: TextStyle(
-        color: colorScheme.onPrimary,
+        color: isDark ? colorScheme.onSurface : colorScheme.onPrimary,
         fontSize: AppConstants.fontSizeTitleLarge,
         fontWeight: FontWeight.w600,
       ),

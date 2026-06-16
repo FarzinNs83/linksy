@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SettingsEntity {
 
-@JsonKey(name: "_id") String get id;
+@JsonKey(name: "_id") String get id; String? get name; String? get email; String? get username; String? get image;
 /// Create a copy of SettingsEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SettingsEntityCopyWith<SettingsEntity> get copyWith => _$SettingsEntityCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SettingsEntity&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SettingsEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.username, username) || other.username == username)&&(identical(other.image, image) || other.image == image));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id);
+int get hashCode => Object.hash(runtimeType,id,name,email,username,image);
 
 @override
 String toString() {
-  return 'SettingsEntity(id: $id)';
+  return 'SettingsEntity(id: $id, name: $name, email: $email, username: $username, image: $image)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $SettingsEntityCopyWith<$Res>  {
   factory $SettingsEntityCopyWith(SettingsEntity value, $Res Function(SettingsEntity) _then) = _$SettingsEntityCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "_id") String id
+@JsonKey(name: "_id") String id, String? name, String? email, String? username, String? image
 });
 
 
@@ -65,10 +65,14 @@ class _$SettingsEntityCopyWithImpl<$Res>
 
 /// Create a copy of SettingsEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = freezed,Object? email = freezed,Object? username = freezed,Object? image = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,
+as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String?,username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -153,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id,  String? name,  String? email,  String? username,  String? image)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SettingsEntity() when $default != null:
-return $default(_that.id);case _:
+return $default(_that.id,_that.name,_that.email,_that.username,_that.image);case _:
   return orElse();
 
 }
@@ -174,10 +178,10 @@ return $default(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String id,  String? name,  String? email,  String? username,  String? image)  $default,) {final _that = this;
 switch (_that) {
 case _SettingsEntity():
-return $default(_that.id);case _:
+return $default(_that.id,_that.name,_that.email,_that.username,_that.image);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +198,10 @@ return $default(_that.id);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "_id")  String id)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "_id")  String id,  String? name,  String? email,  String? username,  String? image)?  $default,) {final _that = this;
 switch (_that) {
 case _SettingsEntity() when $default != null:
-return $default(_that.id);case _:
+return $default(_that.id,_that.name,_that.email,_that.username,_that.image);case _:
   return null;
 
 }
@@ -209,10 +213,14 @@ return $default(_that.id);case _:
 @JsonSerializable()
 
 class _SettingsEntity implements SettingsEntity {
-  const _SettingsEntity({@JsonKey(name: "_id") required this.id});
+  const _SettingsEntity({@JsonKey(name: "_id") required this.id, this.name, this.email, this.username, this.image});
   factory _SettingsEntity.fromJson(Map<String, dynamic> json) => _$SettingsEntityFromJson(json);
 
 @override@JsonKey(name: "_id") final  String id;
+@override final  String? name;
+@override final  String? email;
+@override final  String? username;
+@override final  String? image;
 
 /// Create a copy of SettingsEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -227,16 +235,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SettingsEntity&&(identical(other.id, id) || other.id == id));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SettingsEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.username, username) || other.username == username)&&(identical(other.image, image) || other.image == image));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id);
+int get hashCode => Object.hash(runtimeType,id,name,email,username,image);
 
 @override
 String toString() {
-  return 'SettingsEntity(id: $id)';
+  return 'SettingsEntity(id: $id, name: $name, email: $email, username: $username, image: $image)';
 }
 
 
@@ -247,7 +255,7 @@ abstract mixin class _$SettingsEntityCopyWith<$Res> implements $SettingsEntityCo
   factory _$SettingsEntityCopyWith(_SettingsEntity value, $Res Function(_SettingsEntity) _then) = __$SettingsEntityCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "_id") String id
+@JsonKey(name: "_id") String id, String? name, String? email, String? username, String? image
 });
 
 
@@ -264,10 +272,14 @@ class __$SettingsEntityCopyWithImpl<$Res>
 
 /// Create a copy of SettingsEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = freezed,Object? email = freezed,Object? username = freezed,Object? image = freezed,}) {
   return _then(_SettingsEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,
+as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String?,username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

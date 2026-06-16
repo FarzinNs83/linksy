@@ -1,3 +1,5 @@
+import 'package:front/features/home/domain/entities/user_detail_entity.dart';
+
 import '../repo/home_repo.dart';
 import '../entities/home_entity.dart';
 
@@ -9,11 +11,9 @@ class HomeUseCase {
     return repo.getPosts();
   }
 
-  Future<HomeEntity> publishPost({required String id}) {
-    return repo.publishPost(id: id);
-  }
 
-  Future<HomeEntity> deletePost({required String id}) {
-    return repo.deletePost(id: id);
+
+  Future<UserDetailEntity> getUser({required String id}) {
+    return repo.getUser(id: id);
   }
 }

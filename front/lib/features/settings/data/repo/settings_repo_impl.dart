@@ -1,5 +1,6 @@
 import '../../domain/entities/settings_entity.dart';
 import '../../domain/repo/settings_repo.dart';
+import '../models/settings_model.dart';
 import '../src/settings_remote.dart';
 
 class SettingsRepoImpl implements SettingsRepo {
@@ -7,8 +8,12 @@ class SettingsRepoImpl implements SettingsRepo {
   SettingsRepoImpl(this.remote);
 
   @override
-  Future<List<SettingsEntity>> getAll() async {
-    // TODO: call remote, map models -> entities
-    throw UnimplementedError();
+  Future<SettingsEntity> updateUser({
+    required String id,
+    required SettingsEntity settings,
+  }) {
+    return remote
+        .updateUser(id: id, settings: settings.toModel())
+        .then((value) => value.toEntity());
   }
 }

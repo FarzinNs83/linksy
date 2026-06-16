@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/network/dio_service.dart';
 
+import '../../../home/domain/entities/home_entity.dart';
 import '../../data/src/profile_remote.dart';
 import '../../data/repo/profile_repo_impl.dart';
 import '../../domain/repo/profile_repo.dart';
@@ -24,7 +25,9 @@ ProfileUseCase profileUseCase(Ref ref) {
   return ProfileUseCase(ref.watch(profileRepoProvider));
 }
 
-@Riverpod(keepAlive: true)
-Future<List<ProfileEntity>> profile(Ref ref) {
-  return ref.watch(profileUseCaseProvider).call();
+Future<HomeEntity> publishPost(Ref ref,String id) {
+  return ref.watch(profileUseCaseProvider).publishPost(id: id);
+}
+Future<HomeEntity> deletePost(Ref ref,String id) {
+  return ref.watch(profileUseCaseProvider).deletePost(id: id);
 }

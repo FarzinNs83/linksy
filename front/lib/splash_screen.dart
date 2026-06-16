@@ -3,51 +3,46 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:front/core/utils/app_ext.dart';
 import 'package:front/core/utils/shared_pref_manager.dart';
-import 'package:front/features/auth/presentation/views/login_screen.dart';
 import 'package:front/features/auth/presentation/views/register_screen.dart';
 import 'package:front/features/home/presentation/views/home_screen.dart';
 import 'package:front/gen/fonts.gen.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-// انیمیشن پس‌زمینه با گرادینت نرم و دایره‌های محو
 class SubtleBackground extends StatelessWidget {
   const SubtleBackground({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          // رنگ‌های آرام و ملایم
           colors: [
-            Color(0xFFE0E7FF), // آبی روشن ملایم
-            Color(0xFFF5F7FA), // کرم خیلی روشن
+            colors.primaryContainer.withValues(alpha: 0.4),
+            colors.surfaceContainerLowest,
           ],
         ),
       ),
       child: Stack(
         children: [
-          // دایره محو در بالا سمت چپ
           _AnimatedGlowCircle(
-            alignment: const Alignment(-1.2, -1.2), // کمی خارج از صفحه
+            alignment: const Alignment(-1.2, -1.2),
             size: 200,
-            color: const Color(0xFFB3B6FF).withOpacity(0.3),
+            color: colors.primaryContainer.withValues(alpha: 0.3),
             duration: const Duration(seconds: 2),
           ),
-          // دایره محو در پایین سمت راست
           _AnimatedGlowCircle(
-            alignment: const Alignment(1.2, 1.2), // کمی خارج از صفحه
+            alignment: const Alignment(1.2, 1.2),
             size: 250,
-            color: const Color(0xFF6C72FF).withOpacity(0.2),
+            color: colors.primary.withValues(alpha: 0.2),
             duration: const Duration(seconds: 2),
           ),
-          // دایره محو در مرکز (برای کمی درخشش)
           Center(
             child: _AnimatedGlowCircle(
               size: 150,
-              color: Colors.white.withOpacity(0.1),
+              color: colors.onPrimary.withValues(alpha: 0.1),
               duration: const Duration(seconds: 2),
             ),
           ),
@@ -57,7 +52,6 @@ class SubtleBackground extends StatelessWidget {
   }
 }
 
-// ویجت دایره درخشان متحرک
 class _AnimatedGlowCircle extends StatelessWidget {
   final Alignment alignment;
   final double size;
@@ -81,21 +75,19 @@ class _AnimatedGlowCircle extends StatelessWidget {
         return Align(
           alignment: alignment,
           child: Opacity(
-            opacity: value, // ظاهر شدن تدریجی
+            opacity: value,
             child: Transform.scale(
-              scale: 1.0 + value * 0.2, // کمی بزرگ شدن
+              scale: 1.0 + value * 0.2,
               child: Container(
                 width: size,
                 height: size,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: color.withOpacity(
-                    color.opacity * value,
-                  ), // شفافیت متغیر
+                  color: color.withValues(alpha: (color.a * value).clamp(0.0, 1.0)),
                   boxShadow: [
                     BoxShadow(
-                      color: color.withOpacity(0.4 * value),
-                      blurRadius: size * 0.5, // شعاع بلور بر اساس سایز
+                      color: color.withValues(alpha: 0.4 * value),
+                      blurRadius: size * 0.5,
                       spreadRadius: size * 0.1,
                     ),
                   ],
@@ -119,36 +111,32 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   bool _animateLogo = false;
   bool _showLoader = false;
-  
 
   @override
   void initState() {
     super.initState();
-    // نمایش لوگو بعد از 300 میلی‌ثانیه
     Future.delayed(const Duration(milliseconds: 300), () {
       setState(() {
         _animateLogo = true;
       });
     });
 
-    // نمایش لودر بعد از 1.8 ثانیه
     Future.delayed(const Duration(milliseconds: 1800), () {
       setState(() {
         _showLoader = true;
       });
     });
 
-    // رفتن به صفحه بعد بعد از 3.5 ثانیه
     Future.delayed(const Duration(seconds: 3), () {
       if (!mounted) return;
       SharedPref.instance.init().then((_) {
         final token = SharedPref.instance.getString('token');
         log('Token from Shared Preferences: $token');
         if (token != null) {
-          if(!mounted) return;
+          if (!mounted) return;
           context.navigateR(const HomeScreen());
         } else {
-          if(!mounted) return;
+          if (!mounted) return;
           context.navigateR(RegisterScreen());
         }
       });
@@ -157,11 +145,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: [
-         SubtleBackground(), // پس‌زمینه ظریف و متحرک
+          SubtleBackground(),
           Center(
             child: AnimatedOpacity(
               duration: const Duration(milliseconds: 700),
@@ -170,37 +159,34 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // نام اپلیکیشن با فونت سفارشی
                   Text.rich(
                     TextSpan(
                       text: 'L',
                       style: TextStyle(
                         fontFamily: FontFamily.bobbers,
-                        fontSize: 80, // خیلی بزرگ
+                        fontSize: 80,
                         fontWeight: FontWeight.w900,
-                        color: const Color(0xFF2E3192), // رنگ تیره اصلی
-                        height: 0.8, // تنظیم ارتفاع خط برای ظاهر بهتر
+                        color: colors.onSurface,
+                        height: 0.8,
                       ),
                       children: [
                         TextSpan(
                           text: 'inksy',
                           style: TextStyle(
                             fontFamily: FontFamily.bobbers,
-                            fontSize: 70, // کمی کوچکتر از اولی
+                            fontSize: 70,
                             fontWeight: FontWeight.w700,
-                            color: const Color(0xFF6C72FF), // رنگ دوم
+                            color: colors.primary,
                           ),
                         ),
                       ],
                     ),
                   ),
-
                   const SizedBox(height: 18),
-                  // شعار اپلیکیشن
                   Text(
                     'Effortless Connections.',
                     style: TextStyle(
-                      color: const Color(0xFF2E3192).withOpacity(0.75),
+                      color: colors.onSurface.withValues(alpha: 0.75),
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.6,
@@ -210,8 +196,6 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
           ),
-
-          // لودر در پایین صفحه
           Positioned(
             left: 0,
             right: 0,
@@ -224,14 +208,14 @@ class _SplashScreenState extends State<SplashScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   LoadingAnimationWidget.staggeredDotsWave(
-                    color: const Color(0xFF6C72FF), // رنگ اصلی
+                    color: colors.primary,
                     size: 40,
                   ),
                   const SizedBox(height: 10),
                   Text(
                     'Initializing your journey...',
                     style: TextStyle(
-                      color: const Color(0xFF2E3192).withOpacity(0.65),
+                      color: colors.onSurface.withValues(alpha: 0.65),
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
                     ),

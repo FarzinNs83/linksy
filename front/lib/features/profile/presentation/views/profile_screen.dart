@@ -23,7 +23,6 @@ class ProfileScreen extends ConsumerWidget {
                 "john_doe",
                 style: context.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w700,
-                  color: context.colors.onPrimary,
                 ),
               ),
               Icon(Icons.verified, size: 18, color: Colors.blue.shade500),

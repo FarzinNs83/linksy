@@ -3,6 +3,7 @@ import mongoose, { model, Schema } from "mongoose";
 const user = new mongoose.Schema({
     name: { type: String, required: true },
     image: { type: String, default: '' },
+    username: { type: String, required: true },
     bio: { type: String, default: '' },
     email: { type: String, required: true, unique: true, match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ },
     pw: { type: String, required: true, minLength: 8 },
@@ -14,7 +15,7 @@ const user = new mongoose.Schema({
     cats: [{ type: String, default: [] }],
     bookmark: [{ type: Schema.Types.ObjectId, ref: "Post" }],
 }, {
-    timestamps: true,    
+    timestamps: true,
 });
 
 export default model("User", user);

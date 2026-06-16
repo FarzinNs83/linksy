@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:front/features/home/presentation/views/home_screen.dart';
+import 'package:front/features/publish_post/presentation/views/publish_post_screen.dart';
 
 import '../../../../core/utils/app_ext.dart';
 import '../../../../gen/assets.gen.dart';
@@ -10,12 +11,13 @@ import '../../../settings/presentation/views/settings_screen.dart';
 import 'app_drawer_tile.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({super.key});
+  final String name;
+  const AppDrawer({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: context.colors.onPrimary,
+      backgroundColor: context.colors.surfaceContainerLow,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 8),
         child: Column(
@@ -32,7 +34,7 @@ class AppDrawer extends StatelessWidget {
             AnimatedTextKit(
               animatedTexts: [
                 TyperAnimatedText(
-                  "Farzin Nasiri",
+                  name,
                   speed: Duration(milliseconds: 150),
                   textStyle: context.textTheme.headlineSmall!.copyWith(
                     fontWeight: FontWeight.w500,
@@ -51,6 +53,14 @@ class AppDrawer extends StatelessWidget {
               onTap: () {
                 Scaffold.of(context).closeDrawer();
                 context.navigateR(HomeScreen());
+              },
+            ),
+            AppDrawerTile(
+              icon: Icons.text_increase,
+              title: "P O S T",
+              onTap: () {
+                Scaffold.of(context).closeDrawer();
+                context.navigate(PublishPostScreen());
               },
             ),
             AppDrawerTile(

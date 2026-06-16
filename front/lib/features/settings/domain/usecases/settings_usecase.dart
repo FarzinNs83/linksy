@@ -5,7 +5,7 @@ class SettingsUseCase {
   final SettingsRepo repo;
   SettingsUseCase(this.repo);
 
-  Future<List<SettingsEntity>> call() {
-    return repo.getAll();
+  Future<SettingsEntity> updateUser({required String id, required SettingsEntity settings}) {
+    return repo.updateUser(id: id, settings: settings);
   }
 }

@@ -1,6 +1,5 @@
 import '../entities/settings_entity.dart';
 
 abstract class SettingsRepo {
-  // TODO: define contract
-  Future<List<SettingsEntity>> getAll();
+  Future<SettingsEntity> updateUser({required String id, required SettingsEntity settings});
 }

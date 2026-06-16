@@ -12,6 +12,7 @@ abstract class AuthEntity with _$AuthEntity {
     required String email,
     required String pw,
     required String image,
+    required String username,
   }) = _AuthEntity;
 
   factory AuthEntity.fromJson(Map<String, dynamic> json) =>

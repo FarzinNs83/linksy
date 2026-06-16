@@ -1,3 +1,4 @@
+import 'package:front/features/home/domain/entities/user_detail_entity.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../core/network/dio_service.dart';
 
@@ -29,11 +30,7 @@ Future<List<HomeEntity>> getPosts(Ref ref) {
   return ref.watch(homeUseCaseProvider).getPosts();
 }
 @Riverpod(keepAlive: true)
-Future<HomeEntity> publishPost(Ref ref,String id) {
-  return ref.watch(homeUseCaseProvider).publishPost(id: id);
-}
-@Riverpod(keepAlive: true)
-Future<HomeEntity> deletePost(Ref ref,String id) {
-  return ref.watch(homeUseCaseProvider).deletePost(id: id);
+Future<UserDetailEntity> getUser(Ref ref,String id) {
+  return ref.watch(homeUseCaseProvider).getUser(id: id);
 }
 

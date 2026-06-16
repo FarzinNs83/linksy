@@ -7,7 +7,19 @@ part of 'settings_entity.dart';
 // **************************************************************************
 
 _SettingsEntity _$SettingsEntityFromJson(Map<String, dynamic> json) =>
-    _SettingsEntity(id: json['_id'] as String);
+    _SettingsEntity(
+      id: json['_id'] as String,
+      name: json['name'] as String?,
+      email: json['email'] as String?,
+      username: json['username'] as String?,
+      image: json['image'] as String?,
+    );
 
 Map<String, dynamic> _$SettingsEntityToJson(_SettingsEntity instance) =>
-    <String, dynamic>{'_id': instance.id};
+    <String, dynamic>{
+      '_id': instance.id,
+      'name': instance.name,
+      'email': instance.email,
+      'username': instance.username,
+      'image': instance.image,
+    };

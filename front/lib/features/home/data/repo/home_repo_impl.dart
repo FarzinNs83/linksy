@@ -1,4 +1,6 @@
 import 'package:front/features/home/data/models/home_model.dart';
+import 'package:front/features/home/data/models/user_detail_model.dart';
+import 'package:front/features/home/domain/entities/user_detail_entity.dart';
 
 import '../../domain/entities/home_entity.dart';
 import '../../domain/repo/home_repo.dart';
@@ -8,10 +10,6 @@ class HomeRepoImpl implements HomeRepo {
   final HomeRemote remote;
   HomeRepoImpl(this.remote);
 
-  @override
-  Future<HomeEntity> deletePost({required String id}) async {
-    return await remote.deletePost(id: id).then((value) => value.toEntity());
-  }
 
   @override
   Future<List<HomeEntity>> getPosts() async {
@@ -19,21 +17,13 @@ class HomeRepoImpl implements HomeRepo {
       (value) => value.map((e) => e.toEntity()).toList(),
     );
   }
-
-  @override
-  Future<HomeEntity> publishPost({required String id}) async {
-    return await remote.publishPost(id: id).then((value) => value.toEntity());
-  }
-
   @override
   Future<void> updateLike() {
     // TODO: implement updateLike
     throw UnimplementedError();
   }
-
   @override
-  Future<List<HomeEntity>> updatePost() {
-    // TODO: implement updatePost
-    throw UnimplementedError();
+  Future<UserDetailEntity> getUser({required String id}) async {
+    return await remote.getUser(id: id).then((value) => value.toEntity());
   }
 }

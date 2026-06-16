@@ -133,43 +133,46 @@ final class SettingsUseCaseProvider
 
 String _$settingsUseCaseHash() => r'421389f351fd1005bb41bae59acc8f5e7b1d8388';
 
-@ProviderFor(settings)
-final settingsProvider = SettingsProvider._();
+@ProviderFor(UpdateUser)
+final updateUserProvider = UpdateUserProvider._();
 
-final class SettingsProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<SettingsEntity>>,
-          List<SettingsEntity>,
-          FutureOr<List<SettingsEntity>>
-        >
-    with
-        $FutureModifier<List<SettingsEntity>>,
-        $FutureProvider<List<SettingsEntity>> {
-  SettingsProvider._()
+final class UpdateUserProvider
+    extends $AsyncNotifierProvider<UpdateUser, void> {
+  UpdateUserProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'settingsProvider',
-        isAutoDispose: false,
+        name: r'updateUserProvider',
+        isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$settingsHash();
+  String debugGetCreateSourceHash() => _$updateUserHash();
 
   @$internal
   @override
-  $FutureProviderElement<List<SettingsEntity>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<List<SettingsEntity>> create(Ref ref) {
-    return settings(ref);
-  }
+  UpdateUser create() => UpdateUser();
 }
 
-String _$settingsHash() => r'9e0a84275c5e9c7f9f904a307931a01892133bb0';
+String _$updateUserHash() => r'60c4465ef2da02a0187c232d5d7e252b094806ee';
+
+abstract class _$UpdateUser extends $AsyncNotifier<void> {
+  FutureOr<void> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<AsyncValue<void>, void>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<void>, void>,
+              AsyncValue<void>,
+              Object?,
+              Object?
+            >;
+    element.handleCreate(ref, build);
+  }
+}

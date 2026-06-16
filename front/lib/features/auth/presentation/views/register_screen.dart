@@ -213,6 +213,10 @@ class RegisterScreen extends ConsumerWidget {
                                   pwCtrl.text,
                                   nameCtrl.text,
                                   imageFile!.path,
+                                  nameCtrl.text.toLowerCase().replaceAll(
+                                    " ",
+                                    "_",
+                                  ),
                                 );
                           }
                           log(

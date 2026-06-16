@@ -27,12 +27,24 @@ class AuthController extends _$AuthController {
   @override
   FutureOr<void> build() {}
 
-  Future<void> register(String email, String pw, String name, String image) async {
+  Future<void> register(
+    String email,
+    String pw,
+    String name,
+    String image,
+    String username,
+  ) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       await ref
           .read(authUseCaseProvider)
-          .register(email: email, pw: pw, name: name, image: image);
+          .register(
+            email: email,
+            pw: pw,
+            name: name,
+            image: image,
+            username: username,
+          );
     });
   }
 

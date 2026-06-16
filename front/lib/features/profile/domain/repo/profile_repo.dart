@@ -1,6 +1,6 @@
-import '../entities/profile_entity.dart';
+import '../../../home/domain/entities/home_entity.dart';
 
 abstract class ProfileRepo {
-  // TODO: define contract
-  Future<List<ProfileEntity>> getAll();
+  Future<HomeEntity> publishPost({required String id});
+  Future<HomeEntity> deletePost({required String id});
 }

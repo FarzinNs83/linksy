@@ -6,7 +6,11 @@ part 'settings_entity.g.dart';
 @freezed
 abstract class SettingsEntity with _$SettingsEntity {
   const factory SettingsEntity({
-    @JsonKey(name: "_id") required String id
+    @JsonKey(name: "_id") required String id,
+    String? name,
+    String? email,
+    String? username,
+    String? image
   }) = _SettingsEntity;
 
   factory SettingsEntity.fromJson(Map<String, dynamic> json) =>

@@ -100,7 +100,7 @@ class AppSearchBar extends StatelessWidget {
           onPressed: () {
             controller.openView();
           },
-          icon: Icon(Icons.search, size: 32, color: Theme.of(context).colorScheme.onPrimary),
+          icon: Icon(Icons.search, size: 32, color: Theme.of(context).colorScheme.onSurface),
         );
        },
     );

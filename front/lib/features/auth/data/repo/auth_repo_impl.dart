@@ -16,12 +16,14 @@ class AuthRepoImpl implements AuthRepo {
     required String image,
     required String pw,
     required String name,
+    required String username,
   }) async {
     return await remote.register(
       email: email,
       image: image,
       pw: pw,
       name: name,
+      username: username,
     );
   }
 }

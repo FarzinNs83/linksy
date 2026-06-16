@@ -8,19 +8,19 @@ import verifyToken from '../../middlewares/verify_token.js';
 import upload from '../../utils/upload.js';
 
 //User
-router.post('/register',upload.single('image'), auth.register);
-router.post('/login', auth.login);
+router.post('/register',upload.single('image'), auth.register); //Done
+router.post('/login', auth.login); //Done
 router.get('/getUser/:id', auth.getUser);
 router.get('/searchUser', auth.searchUser);
 router.put('/updateUser/:uid', upload.single('image'), auth.updateUser);
 //Posts
 router.post('/publishPost',upload.single('image'),post.publishPost);
-router.get('/getPosts', post.getPosts);
+router.get('/getPosts', post.getPosts); //Done
 router.delete('/deletePost/:id', post.deletePost);
 router.put('/updatePost/:id', post.updatePost);
 router.put('/updateLike/:id', post.updateLike);
 //Comments
-router.get('/getComments', comments.getComments);
+router.get('/getComments', comments.getComments); //Done
 router.post('/postComment', comments.postComment);
 
 export default router;

@@ -17,7 +17,7 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
   final PickImage pickImage = PickImage();
     
   Future<void> _pickImage() async {
-    final pickedFile = await pickImage.pickImage();
+    final pickedFile = await pickImage.pickImageWithDialog(context);
     if (pickedFile != null) {
       setState(() {
         imageFile = File(pickedFile.path);

@@ -7,7 +7,11 @@ part 'settings_model.g.dart';
 @freezed
 abstract class SettingsModel with _$SettingsModel {
   const factory SettingsModel({
-    @JsonKey(name: "_id") required String id
+    @JsonKey(name: "_id") required String id,
+    String? name,
+    String? email,
+    String? username,
+    String? image,
   }) = _SettingsModel;
 
   factory SettingsModel.fromJson(Map<String, dynamic> json) =>
@@ -16,7 +20,23 @@ abstract class SettingsModel with _$SettingsModel {
 
 extension SettingsMapper on SettingsModel {
   SettingsEntity toEntity() {
-    // TODO: map model -> entity
-    return SettingsEntity(id : id);
+    return SettingsEntity(
+      id: id,
+      name: name,
+      email: email,
+      username: username,
+      image: image,
+    );
+  }
+}
+extension SettingsEntityMapper on SettingsEntity {
+  SettingsModel toModel() {
+    return SettingsModel(
+      id: id,
+      name: name,
+      email: email,
+      username: username,
+      image: image,
+    );
   }
 }

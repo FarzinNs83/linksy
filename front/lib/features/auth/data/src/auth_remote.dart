@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:front/core/utils/shared_pref_manager.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/constant/url_const.dart';
 import '../../../../core/error/app_exception.dart';
@@ -15,6 +14,7 @@ abstract class AuthRemote {
     required String image,
     required String pw,
     required String name,
+    required String username,
   });
   Future<void> login({required String email, required String pw});
 }
@@ -32,6 +32,7 @@ class AuthRemoteImpl implements AuthRemote {
       );
       if (response.statusCode == 201) {
         SharedPref.instance.setString('token', response.data['token']);
+        SharedPref.instance.setString('userId', response.data['_id']);
         return response.data;
       }
       throw AppException(response.statusMessage.toString());
@@ -47,15 +48,14 @@ class AuthRemoteImpl implements AuthRemote {
     required String image,
     required String pw,
     required String name,
+    required String username,
   }) async {
-    log(
-      "Registering User with Email: $email, Name: $name, Image Path: $image, PW: ${'*' * pw.length}",
-    );
     try {
       final formData = FormData.fromMap({
         'email': email,
         'pw': pw,
         'name': name,
+        'username': username,
         'image': await MultipartFile.fromFile(
           image,
           filename: image.split('/').last,
@@ -66,6 +66,7 @@ class AuthRemoteImpl implements AuthRemote {
       if (response.statusCode == 201) {
         log(jsonEncode(response.data));
         SharedPref.instance.setString('token', response.data['token']);
+        SharedPref.instance.setString('userId', response.data['data']['_id']);
         return response.data;
       }
       throw AppException(response.statusMessage.toString());

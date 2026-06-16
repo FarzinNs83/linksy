@@ -13,8 +13,9 @@ class AuthUseCase {
     required String pw,
     required String name,
     required String image,
+    required String username,
   }) async {
-    return repo.register(email: email, pw: pw, name: name, image: image);
+    return repo.register(email: email, pw: pw, name: name, image: image, username: username);
   }
 
   Future<void> login({required String email, required String pw}) async {

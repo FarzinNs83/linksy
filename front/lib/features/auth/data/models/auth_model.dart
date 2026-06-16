@@ -13,6 +13,7 @@ abstract class AuthModel with _$AuthModel {
     required String email,
     required String pw,
     required String image,
+    required String username,
   }) = _AuthModel;
 
   factory AuthModel.fromJson(Map<String, dynamic> json) =>
@@ -27,6 +28,7 @@ extension AuthModelMapper on AuthModel {
       email: email,
       pw: pw,
       image: image,
+      username: username,
     );
   }
 }
@@ -39,6 +41,7 @@ extension AuthEntityMapper on AuthEntity {
       email: email,
       pw: pw,
       image: image,
+      username: username,
     );
   }
 }
